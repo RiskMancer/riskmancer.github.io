@@ -1,0 +1,117 @@
+/* Editorial-scale visual pass — bigger type, more air, sharper number/label
+   contrast. No new colors: everything below reuses --bs-primary / the site's
+   existing border-radius and shadow tokens. */
+
+.service-img-wrapper img {
+  border-radius: var(--bs-border-radius-lg);
+  box-shadow: var(--bs-box-shadow-lg);
+  transition: transform 0.5s ease;
+}
+
+.service-item:hover .service-img-wrapper img {
+  transform: scale(1.02);
+}
+
+/* Mobile hamburger: the popover width is fixed (see styles.css
+   --bs-dropdown-min-width: 380px), which overflows the viewport on
+   phones narrower than ~410px. Cap it to the available width instead. */
+.header .dropdown-menu {
+  --bs-dropdown-min-width: min(380px, calc(100vw - 2rem));
+}
+
+/* Bold, tight section headlines — impact from weight/tracking, not raw size.
+   Fluid clamp() so it scales with the actual column width instead of
+   jumping to a fixed size that can wrap awkwardly at in-between widths. */
+.section-heading {
+  font-weight: 800 !important;
+  letter-spacing: -0.02em;
+  line-height: 1.15 !important;
+  font-size: clamp(1.75rem, 1.2rem + 1.8vw, 3rem) !important;
+}
+
+/* Smaller variant for longer strings (e.g. the bilingual company name)
+   where the full-size heading would wrap awkwardly and feel oversized. */
+.section-heading-sm {
+  font-weight: 800 !important;
+  letter-spacing: -0.01em;
+  line-height: 1.25 !important;
+  font-size: clamp(1.5rem, 1rem + 1.4vw, 2.75rem) !important;
+}
+
+/* Longer, slightly bolder accent rule under each heading. */
+.section-divider {
+  height: 4px;
+  width: 96px;
+  border-radius: 2px;
+  background-color: var(--bs-primary);
+  margin-block: 1rem 0;
+}
+
+.section-divider-light {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+/* More breathing room around the two main content sections. */
+@media (min-width: 1280px) {
+
+  .services,
+  .stats-facts {
+    padding-block: 9rem !important;
+  }
+}
+
+/* Oversized stat numbers with a small, wide-tracked caption underneath —
+   the big-number / small-label contrast borrowed from the reference sites. */
+.stat-number {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em;
+  line-height: 1 !important;
+  font-size: clamp(3.5rem, 2.5rem + 4vw, 6.5rem) !important;
+}
+
+.stat-number img {
+  width: 16px;
+  height: 16px;
+  opacity: 0.85;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+/* Service item title — scaled down from the original display-scale (fs-10)
+   button size so "Virtual CIO & CISO" etc. don't wrap mid-phrase, only at
+   the intended zh/en <br>. */
+.service-item-title {
+  font-size: clamp(1.1rem, 0.8rem + 1vw, 1.6rem) !important;
+  white-space: normal;
+  text-wrap: balance;
+}
+
+/* Breathing room for the dense bullet text in each service block.
+   text-wrap: pretty avoids stranding a single trailing character on its
+   own line when a bullet is just barely too long for the column. */
+.service-item h5 {
+  line-height: 2.15 !important;
+  text-wrap: pretty;
+}
+
+.service-item h5 strong {
+  display: block;
+  margin-top: 0.75em;
+}
+
+.service-item h5 strong:first-child {
+  margin-top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-img-wrapper img {
+    transition: none;
+  }
+}
