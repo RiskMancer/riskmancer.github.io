@@ -38,6 +38,16 @@
   font-size: clamp(1.5rem, 1rem + 1.4vw, 2.75rem) !important;
 }
 
+/* Eyebrow badge labels ("服務及解決方案", "關於我們", "聯絡我們") sit right
+   beside a section-heading that scales fluidly up to 3rem on wide screens.
+   The badge's default Bootstrap size is a flat 1rem, so on desktop the two
+   end up wildly out of proportion. Let the badge grow gently with the
+   viewport too, so the pairing stays balanced instead of the label looking
+   flat/tiny next to a huge heading. */
+.badge {
+  font-size: clamp(1rem, 0.9rem + 0.3vw, 1.375rem) !important;
+}
+
 /* Longer, slightly bolder accent rule under each heading. */
 .section-divider {
   height: 4px;
